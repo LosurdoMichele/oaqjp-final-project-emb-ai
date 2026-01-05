@@ -29,8 +29,12 @@ def emotion_detector(text_to_analyse):
         dominant_emotion = sorted(predicted_emotions.items(), key=lambda e: e[1],
          reverse=True )[0][0]
         ordered_emotions = dict(sorted(predicted_emotions.items(), key=lambda item: item[0]))
-        ordered_emotions['dominat'] = dominant_emotion
-        result_formatted ="{\n" + ",\n".join(
-               f"{key}: {value:.4f}" if isinstance(value, float) else f"{key}: {value}"
-                for key, value in ordered_emotions.items()) + "\n}"
+        ordered_emotions['dominant_emotion'] = dominant_emotion
+        result_formatted ="{\n" 
+        for k,v in ordered_emotions.items():
+            if isinstance(v, float):
+                result_formatted = result_formatted + f"'{k}': {v},\n"
+            else:
+                result_formatted = result_formatted + f"'{k}': '{v}',\n"
+        result_formatted = result_formatted.rsplit(",", 1)[0] + "\n}"
     return result_formatted
