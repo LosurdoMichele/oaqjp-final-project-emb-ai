@@ -27,8 +27,8 @@ def sent_analyzer():
     '''
 
     text_to_analyze = request.args.get('textToAnalyze')
-    if text_to_analyze == '' or text_to_analyze is None:
-        return 'No text given! Please provide text to be analyzed.'
+    #if text_to_analyze == '' or text_to_analyze is None:
+    #    return 'No text given! Please provide text to be analyzed.'
     output_str = emotion_detector(text_to_analyze).replace("'", '"')
     print(output_str)
     output_json = json.loads(output_str)

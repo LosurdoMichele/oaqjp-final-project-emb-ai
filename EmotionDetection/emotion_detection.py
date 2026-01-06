@@ -36,5 +36,9 @@ def emotion_detector(text_to_analyse):
                 result_formatted = result_formatted + f"'{k}': {v},\n"
             else:
                 result_formatted = result_formatted + f"'{k}': '{v}',\n"
-        result_formatted = result_formatted.rsplit(",", 1)[0] + "\n}"
+    if response.status_code == 400:
+        result_formatted = result_formatted + '"anger": None,' + \
+                            ' "disgust": None, "fear": None, "joy": None,' + \
+                            ' "sadness":None, "dominant_emotion": None'
+    result_formatted = result_formatted.rsplit(",", 1)[0] + "\n}"
     return result_formatted
