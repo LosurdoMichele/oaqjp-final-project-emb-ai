@@ -30,7 +30,7 @@ def emotion_detector(text_to_analyse):
          reverse=True )[0][0]
         ordered_emotions = dict(sorted(predicted_emotions.items(), key=lambda item: item[0]))
         ordered_emotions['dominant_emotion'] = dominant_emotion
-        result_formatted ="{\n" 
+        result_formatted ="{\n"
         for k,v in ordered_emotions.items():
             if isinstance(v, float):
                 result_formatted = result_formatted + f"'{k}': {v},\n"
